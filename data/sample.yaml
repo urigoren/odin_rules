@@ -1,15 +1,22 @@
 rules:
   - name: dep_event_mention_out
     label: LivesIn
-    priority: 2
+    priority: 1
     type: dependency
     pattern: |
       trigger = [lemma=live]
-      resident:Person = nsubj
-  - name: "np"
-    label: Noun
+      resident:Person = [outgoing=/nmod|nsubj|det|dep|case|nmod_in|acl:relcl/]
+  - name: dep_event_mention_in
+    label: LivesIn
     priority: 1
-    type: token
-    unit: tag
+    type: dependency
     pattern: |
-      /^N/
+      trigger = [lemma=live]
+      resident:Person = [incoming=/nmod|nsubj|det|dep|case|nmod_in|acl:relcl/]
+#  - name: "np"
+#    label: Noun
+#    priority: 1
+#    type: token
+#    unit: tag
+#    pattern: |
+#      /^N/
