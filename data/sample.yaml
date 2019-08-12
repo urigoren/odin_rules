@@ -1,0 +1,22 @@
+rules:
+  - name: dep_event_mention_out
+    label: LivesIn
+    priority: 2
+    type: dependency
+    pattern: |
+      trigger = [lemma=live]
+      resident:Person = nsubj
+  - name: "np"
+    label: Noun
+    priority: 1
+    type: token
+    unit: tag
+    pattern: |
+      /^N/
+#  - name: "laceration"
+#    label: Lact
+#    priority: 1
+#    type: dependency
+#    pattern: |
+#      trigger = [lemma=laceration]
+#      subject:Cut=/prep/
