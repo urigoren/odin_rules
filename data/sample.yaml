@@ -13,10 +13,3 @@ rules:
     unit: tag
     pattern: |
       /^N/
-#  - name: "laceration"
-#    label: Lact
-#    priority: 1
-#    type: dependency
-#    pattern: |
-#      trigger = [lemma=laceration]
-#      subject:Cut=/prep/
