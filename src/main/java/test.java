@@ -50,9 +50,9 @@ public class test {
 //            doc.clear();
             Collection<Mention> mentions = JavaConverters.asJavaCollection(ee.extractFrom(doc));
             for (Mention mention : mentions) {
-                System.out.println(mention.text());
-                System.out.println(mention.foundBy());
-                System.out.println(mention.label());
+                System.out.println(String.format("%s => %s : %s",
+                        mention.foundBy(), mention.text(), mention.label()
+                        ));
             }
         }
     }
