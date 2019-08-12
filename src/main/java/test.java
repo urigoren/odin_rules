@@ -27,14 +27,14 @@ public class test {
 
     public static void main(String[] args) {
         String dataset = "sample";
-        String text = readFile(String.format("data/%s.txt", dataset)).orElse("");;
+        String text = readFile(String.format("data/%s.txt", dataset)).orElse("");
         String rules = readFile(String.format("data/%s.yaml", dataset)).orElse("");
         if (rules.equals(""))
             return;
         ExtractorEngine ee = ExtractorEngine.fromRules(rules);
         Processor proc = new CoreNLPProcessor(true, true, true, 0, 100);
 //        Processor proc = new FastNLPProcessor(false, false, true,0);
-        Document doc = null;
+        Document doc;
         for (String line:  text.split("\n")) {
             line = line.trim();
             if (line.equals(""))
