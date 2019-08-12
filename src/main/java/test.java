@@ -5,7 +5,8 @@ import org.clulab.processors.corenlp.CoreNLPProcessor;
 import org.clulab.processors.Processor;
 import org.clulab.processors.fastnlp.FastNLPProcessor;
 
-import scala.collection.JavaConversions;
+import scala.collection.JavaConverters;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -47,7 +48,7 @@ public class test {
 //            proc.lemmatize(doc);
 //            proc.recognizeNamedEntities(doc);
 //            doc.clear();
-            Collection<Mention> mentions = JavaConversions.asJavaCollection(ee.extractFrom(doc));
+            Collection<Mention> mentions = JavaConverters.asJavaCollection(ee.extractFrom(doc));
             for (Mention mention : mentions) {
                 System.out.println(mention.text());
                 System.out.println(mention.foundBy());
