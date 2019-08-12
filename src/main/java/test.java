@@ -31,9 +31,8 @@ public class test {
         if (rules.equals(""))
             return;
         ExtractorEngine ee = ExtractorEngine.fromRules(rules);
-        Processor proc = new CoreNLPProcessor(false, false,1,100);
-//        Processor proc = new FastNLPProcessor(false, false,0);
-//        Document doc = proc.mkDocument(text,  false);
+        Processor proc = new CoreNLPProcessor(true, true, true, 0, 100);
+//        Processor proc = new FastNLPProcessor(false, false, true,0);
         Document doc = null;
         for (String line:  text.split("\n")) {
             line = line.trim();
@@ -43,6 +42,11 @@ public class test {
                 continue;
             System.out.println(line);
             doc = proc.annotate(line, false);
+//            doc = proc.mkDocument(line, false);
+//            proc.tagPartsOfSpeech(doc);
+//            proc.lemmatize(doc);
+//            proc.recognizeNamedEntities(doc);
+//            doc.clear();
             Collection<Mention> mentions = JavaConversions.asJavaCollection(ee.extractFrom(doc));
             for (Mention mention : mentions) {
                 System.out.println(mention.text());

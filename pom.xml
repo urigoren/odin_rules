@@ -28,28 +28,28 @@
     <dependencies>
         <dependency>
             <groupId>org.clulab</groupId>
-            <artifactId>processors-corenlp_2.11</artifactId>
-            <version>7.4.2</version>
+            <artifactId>processors-corenlp_2.12</artifactId>
+            <version>7.5.3</version>
         </dependency>
         <dependency>
             <groupId>org.clulab</groupId>
-            <artifactId>processors-main_2.11</artifactId>
-            <version>7.4.2</version>
+            <artifactId>processors-main_2.12</artifactId>
+            <version>7.5.3</version>
         </dependency>
         <dependency>
             <groupId>org.clulab</groupId>
-            <artifactId>processors-odin_2.11</artifactId>
-            <version>7.4.2</version>
+            <artifactId>processors-odin_2.12</artifactId>
+            <version>7.5.3</version>
         </dependency>
         <dependency>
             <groupId>org.clulab</groupId>
-            <artifactId>processors-modelsmain_2.11</artifactId>
-            <version>7.4.2</version>
+            <artifactId>processors-modelsmain_2.12</artifactId>
+            <version>7.5.3</version>
         </dependency>
         <dependency>
             <groupId>org.clulab</groupId>
-            <artifactId>processors-modelscorenlp_2.11</artifactId>
-            <version>7.4.2</version>
+            <artifactId>processors-modelscorenlp_2.12</artifactId>
+            <version>7.5.3</version>
         </dependency>
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
