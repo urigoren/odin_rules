@@ -13,6 +13,12 @@ rules:
     pattern: |
       trigger = [lemma=live]
       resident:Noun = [incoming=/nmod|nsubj|det|dep|case|nmod_in|acl:relcl/]
+  - name: "oscar-quick-fix"
+    label: Noun
+    priority: 1
+    type: token
+    pattern: |
+        "Oscar"
   - name: "np"
     label: Noun
     priority: 1
