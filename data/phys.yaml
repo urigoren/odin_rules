@@ -1,0 +1,18 @@
+- name: numbers
+  label: Number
+  type: token
+  pattern: |
+    [tag=CD]
+- name: section
+  label: Section
+  type: token
+  pattern: |
+    [ word=/[A-Z \-]+/ ]
+
+- name: first
+  label: jumper
+  type: dependency
+  pattern: |
+    trigger = [lemma=jump]
+    entity:NN = nsubj
+    obstacle:NN = prep_over

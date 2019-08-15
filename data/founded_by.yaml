@@ -1,0 +1,135 @@
+rules:
+  - name: "ner-person"
+    label: Person
+    priority: 1
+    type: token
+    pattern: |
+      [entity="PERSON"]+
+
+  - name: "ner-org"
+    label: Organization
+    priority: 1
+    type: token
+    pattern: |
+      [entity="ORGANIZATION"]+
+
+
+  # | trigger=[ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+  #   subject:Organization=>nmod_of
+  #   object:Person=<appos
+  - name: fb21f9c0-1438-49c8-94f1-443988930d6c
+    label: org:founded_by
+    priority: 3
+    type: dependency
+    pattern: |
+      trigger = [ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+      subject:Organization = >nmod_of
+      object:Person = <appos
+
+  # | trigger=[ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+  #   subject:Organization=>dobj
+  #   object:Person=>nsubj
+  - name: 3052fe00-f6de-4532-89b2-e9b9c56181ab
+    label: org:founded_by
+    priority: 3
+    type: dependency
+    pattern: |
+      trigger = [ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+      subject:Organization = >dobj
+      object:Person = >nsubj
+
+  # | trigger=[ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+  #   subject:Organization=<acl <appos
+  #   object:Person=>nmod_by
+  - name: 9e522ef4-ac06-4ed2-98d8-450662c28530
+    label: org:founded_by
+    priority: 3
+    type: dependency
+    pattern: |
+      trigger = [ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+      subject:Organization = <acl <appos
+      object:Person = >nmod_by
+
+  # | trigger=[ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+  #   subject:Organization=>nmod_of
+  #   object:Person=>nsubj
+  - name: bd29d029-5466-4470-bcd8-fcfce32d543a
+    label: org:founded_by
+    priority: 3
+    type: dependency
+    pattern: |
+      trigger = [ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+      subject:Organization = >nmod_of
+      object:Person = >nsubj
+
+  # | trigger=[ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+  #   subject:Organization=<compound >compound
+  #   object:Person=<compound
+  - name: 7980bdbf-fddc-44d3-990b-71da06176479
+    label: org:founded_by
+    priority: 3
+    type: dependency
+    pattern: |
+      trigger = [ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+      subject:Organization = <compound >compound
+      object:Person = <compound
+
+  # | trigger=[ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+  #   subject:Organization=>dobj
+  #   object:Person=>nsubj <appos
+  - name: e5541ad8-ecc3-4897-aefa-1d5eb1ac1e3d
+    label: org:founded_by
+    priority: 3
+    type: dependency
+    pattern: |
+      trigger = [ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+      subject:Organization = >dobj
+      object:Person = >nsubj <appos
+
+  # | trigger=[ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+  #   subject:Organization=>nmod_of >compound
+  #   object:Person=<appos
+  - name: 30f8d953-af91-4be1-a901-ed494c8c5a0a
+    label: org:founded_by
+    priority: 3
+    type: dependency
+    pattern: |
+      trigger = [ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+      subject:Organization = >nmod_of >compound
+      object:Person = <appos
+
+  # | trigger=[ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+  #   subject:Organization=>nsubjpass
+  #   object:Person=>nmod_agent
+  - name: 482ff83f-0fb4-4570-951b-c6e4e4a04297
+    label: org:founded_by
+    priority: 3
+    type: dependency
+    pattern: |
+      trigger = [ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+      subject:Organization = >nsubjpass
+      object:Person = >nmod_agent
+
+  # | trigger=[ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+  #   subject:Organization=>dobj >dep >nsubj
+  #   object:Person=<advcl_to >nsubj
+  - name: ec2a83ca-3611-4cdb-b765-d00a298ee346
+    label: org:founded_by
+    priority: 3
+    type: dependency
+    pattern: |
+      trigger = [ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+      subject:Organization = >dobj >dep >nsubj
+      object:Person = <advcl_to >nsubj
+
+  # | trigger=[ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+  #   subject:Organization=>dobj >dep
+  #   object:Person=>nsubj
+  - name: be2af406-c0d8-49ae-8223-709b99813879
+    label: org:founded_by
+    priority: 3
+    type: dependency
+    pattern: |
+      trigger = [ word=/founded|established|formed|crearted|opened|launched|co-founded|found|create|form|co-found|founding|establishing|founder|co-founder|creator/ ]
+      subject:Organization = >dobj >dep
+      object:Person = >nsubj

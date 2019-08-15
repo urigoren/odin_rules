@@ -5,20 +5,20 @@ rules:
     type: dependency
     pattern: |
       trigger = [lemma=live]
-      resident:Noun = [outgoing=/nmod|nsubj|det|dep|case|nmod_in|acl:relcl/]
+      resident:Noun = >/nmod|nsubj|det|dep|case|nmod_in|acl:relcl/
   - name: dep_event_mention_in
     label: LivesIn
     priority: 2
     type: dependency
     pattern: |
       trigger = [lemma=live]
-      resident:Noun = [incoming=/nmod|nsubj|det|dep|case|nmod_in|acl:relcl/]
-  - name: "oscar-quick-fix"
-    label: Noun
-    priority: 1
-    type: token
-    pattern: |
-        "Oscar"
+      resident:Noun = </nmod|nsubj|det|dep|case|nmod_in|acl:relcl/
+#  - name: "oscar-quick-fix"
+#    label: Noun
+#    priority: 1
+#    type: token
+#    pattern: |
+#        "Oscar"
   - name: "np"
     label: Noun
     priority: 1
