@@ -1,3 +1,4 @@
+import com.google.gson.Gson;
 import org.clulab.odin.ExtractorEngine;
 import org.clulab.odin.Mention;
 import org.clulab.odin.TextBoundMention;
@@ -7,12 +8,14 @@ import org.clulab.processors.Processor;
 import org.clulab.processors.fastnlp.FastNLPProcessor;
 
 import scala.collection.JavaConverters;
+import scala.util.parsing.json.JSONObject;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Optional;
 
 public class test {
@@ -52,6 +55,7 @@ public class test {
         return Optional.of(sb.toString());
     }
     public static void main(String[] args) {
+        Gson gson = new Gson();
         String dataset = "procedures";
         String text = readFile(String.format("data/%s.txt", dataset)).orElse("");
         String rules = readFile(String.format("data/%s.yaml", dataset)).orElse("");
@@ -75,17 +79,28 @@ public class test {
 //            proc.recognizeNamedEntities(doc);
 //            doc.clear();
             Collection<Mention> mentions = JavaConverters.asJavaCollection(ee.extractFrom(doc));
+            HashMap<String, ArrayList<String>> result = new HashMap<String, ArrayList<String>>();
+            //HashMap<String, HashMap<String, ArrayList<String>>> result = new HashMap<String, HashMap<String, ArrayList<String>>>();
             for (Mention mention : mentions) {
-//                for(String arg: getArguments(mention))
-//                {
-//                    String txt = extractArgument(mention, arg).get();
-//                    System.out.println(txt);
-//                }
-                System.out.println(mention.arguments().size());
-                System.out.println(String.format("%s => %s : %s",
-                        mention.foundBy(), mention.text(), mention.label()
-                        ));
+                if (mention.arguments().size() > 0)
+                {
+                    for(String arg: getArguments(mention))
+                    {
+                        if (!result.containsKey(arg))
+                            result.put(arg, new ArrayList<String>());
+                        ArrayList<String> lst = result.get(arg);
+                        lst.add(extractArgument(mention, arg).get());
+                    }
+                }
+                else
+                {
+                    if (!result.containsKey(mention.label()))
+                        result.put(mention.label(), new ArrayList<String>());
+                    ArrayList<String> lst = result.get(mention.label());
+                    lst.add(mention.text());
+                }
             }
+            System.out.println(gson.toJson(result));
         }
     }
 }
