@@ -56,7 +56,7 @@ public class test {
     }
     public static void main(String[] args) {
         Gson gson = new Gson();
-        String dataset = "drainage";
+        String dataset = args[0];
         String text = readFile(String.format("data/%s.txt", dataset)).orElse("");
         String rules = readFile(String.format("data/%s.yaml", dataset)).orElse("");
         if (rules.equals(""))
